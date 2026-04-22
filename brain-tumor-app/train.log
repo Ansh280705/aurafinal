@@ -1,0 +1,176 @@
+﻿venv\Scripts\python : 
+WARNING: All log messages 
+before 
+absl::InitializeLog() is 
+called are written to 
+STDERR
+At line:1 char:1
++ venv\Scripts\python 
+train.py --epochs 1 2>&1 
+| Out-File -FilePath tra 
+...
++ ~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo        
+      : NotSpecified: (W  
+  ARNING: All lo...itte   
+ n to STDERR:String) [    
+], RemoteException
+    + FullyQualifiedError 
+   Id : NativeCommandErr  
+  or
+ 
+I0000 
+00:00:1776810126.888207   
+13288 port.cc:153] oneDNN 
+custom operations are on. 
+You may see slightly 
+different numerical 
+results due to 
+floating-point round-off 
+errors from different 
+computation orders. To 
+turn them off, set the 
+environment variable 
+`TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages 
+before 
+absl::InitializeLog() is 
+called are written to 
+STDERR
+I0000 
+00:00:1776810129.122652   
+13288 port.cc:153] oneDNN 
+custom operations are on. 
+You may see slightly 
+different numerical 
+results due to 
+floating-point round-off 
+errors from different 
+computation orders. To 
+turn them off, set the 
+environment variable 
+`TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING:tensorflow:TensorF
+low GPU support is not 
+available on native 
+Windows for TensorFlow >= 
+2.11. Even if CUDA/cuDNN 
+are installed, GPU will 
+not be used. Please use 
+WSL2 or the 
+TensorFlow-DirectML 
+plugin.
+[INFO] No GPU detected û running on CPU
+
+=======================================================
+  STEP 1: Dataset download & preparation
+=======================================================
+[INFO] Downloading dataset via kagglehub à
+[INFO] Downloaded to: C:\Users\anshr\.cache\kagglehub\datasets\navoneel\brain-mri-images-for-brain-tumor-detection\versions\1
+[INFO] Dataset root found at: C:\Users\anshr\.cache\kagglehub\datasets\navoneel\brain-mri-images-for-brain-tumor-detection\versions\1
+[INFO] Found 155 tumor images, 98 non-tumor images  (total=253)
+[INFO] Train=177  Val=38  Test=38
+Found 177 validated image filenames belonging to 2 classes.
+Found 38 validated image filenames belonging to 2 classes.
+Found 38 validated image filenames belonging to 2 classes.
+I0000 
+00:00:1776810132.346869   
+13288 
+cpu_feature_guard.cc:227] 
+This TensorFlow binary is 
+optimized to use 
+available CPU 
+instructions in 
+performance-critical 
+operations.
+To enable the following 
+instructions: SSE3 SSE4.1 
+SSE4.2 AVX AVX2 AVX512F 
+AVX512_VNNI FMA, in other 
+operations, rebuild 
+TensorFlow with the 
+appropriate compiler 
+flags.
+
+=======================================================
+  STEP 2: Building model
+=======================================================
+[INFO] VGG16 total layers : 19
+[INFO] Trainable from idx : 15 (4 layers)
+Model: "BrainTumorVGG16"
++--------------------------------------------------------------------------+
+| Layer (type)                    | Output Shape           |       Param # |
+|---------------------------------+------------------------+---------------|
+| mri_input (InputLayer)          | (None, 224, 224, 3)    |             0 |
+|---------------------------------+------------------------+---------------|
+| vgg16 (Functional)              | (None, 7, 7, 512)      |    14,714,688 |
+|---------------------------------+------------------------+---------------|
+| gap (GlobalAveragePooling2D)    | (None, 512)            |             0 |
+|---------------------------------+------------------------+---------------|
+| fc1 (Dense)                     | (None, 256)            |       131,328 |
+|---------------------------------+------------------------+---------------|
+| bn1 (BatchNormalization)        | (None, 256)            |         1,024 |
+|---------------------------------+------------------------+---------------|
+| relu1 (Activation)              | (None, 256)            |             0 |
+|---------------------------------+------------------------+---------------|
+| dropout1 (Dropout)              | (None, 256)            |             0 |
+|---------------------------------+------------------------+---------------|
+| output (Dense)                  | (None, 1)              |           257 |
++--------------------------------------------------------------------------+
+ Total params: 14,847,297 (56.64 MB)
+ Trainable params: 7,211,521 (27.51 MB)
+ Non-trainable params: 7,635,776 (29.13 MB)
+
+
+=======================================================
+  STEP 3: Training
+=======================================================
+Traceback (most recent 
+call last):
+  File "C:\Users\anshr\Des
+ktop\Ansh_model\brain-tumo
+r-app\train.py", line 
+241, in <module>
+    main()
+  File "C:\Users\anshr\Des
+ktop\Ansh_model\brain-tumo
+r-app\train.py", line 
+161, in main
+    history = model.fit(
+              ^^^^^^^^^^
+  File "C:\Users\anshr\Des
+ktop\Ansh_model\brain-tumo
+r-app\venv\Lib\site-packag
+es\keras\src\utils\traceba
+ck_utils.py", line 122, 
+in error_handler
+    raise e.with_traceback
+(filtered_tb) from None
+  File "C:\Users\anshr\Des
+ktop\Ansh_model\brain-tumo
+r-app\venv\Lib\site-packag
+es\tensorflow\python\summa
+ry\tb_summary.py", line 
+298, in scalar
+    raise TBNotInstalledEr
+ror("tf.summary.scalar") 
+from exc
+tensorflow.python.summary.
+tb_summary.TBNotInstalledE
+rror: TensorBoard is not 
+installed, missing 
+implementation for 
+tf.summary.scalar
+W0000 
+00:00:1776810137.723301   
+13288 generator_dataset_op
+.cc:113] Error occurred 
+when finalizing 
+GeneratorDataset 
+iterator: 
+FAILED_PRECONDITION: 
+Python interpreter state 
+is not initialized. The 
+process may be terminated.
+	 [[{{node PyFunc}}]]
